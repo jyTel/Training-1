@@ -1,0 +1,36 @@
+{# /templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+	{% if users %}
+		<table id="users" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th><th>Name</th><th>Lastname</th><th>Username</th><th>Mail</th><th>Password</th><th>Role</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.getId() }}</td>
+						<td>{{ user.getName() }}</td>
+						<td>{{ user.getLastName() }}</td>
+						<td>{{ user.getUsername() }}</td>
+						<td>{{ user.getMail() }}</td>
+						<td>{{ user.getPassword() }}</td>
+						<td>{{ user.getrole() }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>No user to display</p>
+	{% endif %}
+
+    <br>
+    <a href="/">Home</a>
+{% endblock %}
