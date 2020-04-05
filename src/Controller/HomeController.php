@@ -1,5 +1,5 @@
 <?php
-/* /templates/home/index.html.twig  */
+/* /Controller/HomeController.php  */
 
 namespace App\Controller;
 
