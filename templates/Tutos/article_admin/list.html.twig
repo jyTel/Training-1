@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% if articles %}
+    <table id="articles" class="table table-striped">
+    	<thead>
+    		<tr>
+    			<th>Id</th><th>Title</th><th>Content</th><th>Slug</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		{% for article in articles %}
+    			<tr>
+    				<td>{{ article.getId() }}</td>
+    				<td>{{ article.getTitle() }}</td>
+    				<td>{{ article.getContent() }}</td>
+    				<td>{{ article.getSlug() }}</td>
+    			</tr>
+    		{% endfor %}
+    	</tbody>
+    </table>
+    {% else %}
+    	<p>No article to display</p>
+    {% endif %}
+    
+
+{% endblock %}
