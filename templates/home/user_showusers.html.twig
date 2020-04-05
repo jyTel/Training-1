@@ -1,4 +1,4 @@
-{# /templates/home/index.html.twig #}
+{# /templates/home/user_showusers.html.twig #}
 
 {% extends 'base.html.twig' %}
 
@@ -22,7 +22,7 @@
 						<td>{{ user.getUsername() }}</td>
 						<td>{{ user.getMail() }}</td>
 						<td>{{ user.getPassword() }}</td>
-						<td>{{ user.getrole() }}</td>
+						<td>{{ user.getRole() }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>
@@ -31,6 +31,17 @@
 		<p>No user to display</p>
 	{% endif %}
 
-    <br>
-    <a href="/">Home</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+    	<div class="collapse navbar-collapse" id="navbarColor01">
+    		<ul class="navbar-nav mr-auto">
+    			<li class="nav-item">
+    				<a class="nav-link" href="{{ path('user_newuser') }}">New user</a>
+    			</li>
+    		</ul>
+    	</div>	
+	</div>
+	</nav>
+	
+	
 {% endblock %}

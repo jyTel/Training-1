@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class Users
+class User
 {
     /**
      * @ORM\Id()
@@ -40,6 +40,7 @@ class Users
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+    private $passwordCheck;
 
     /**
      * @ORM\Column(type="string", length=8)
@@ -111,6 +112,19 @@ class Users
         return $this;
     }
 
+    public function getPasswordCheck(): ?string
+    {
+        return $this->passwordCheck;
+    }
+    
+    public function setPasswordCheck(string $passwordCheck): self
+    {
+        $this->passwordCheck = $passwordCheck;
+        
+        return $this;
+    }
+    
+    
     public function getRole(): ?string
     {
         return $this->role;
