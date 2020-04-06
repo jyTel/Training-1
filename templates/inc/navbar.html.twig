@@ -1,6 +1,6 @@
 {# /templates/inc/navbar.html.twig #}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary {{ app.session.flashbag.peek('success')|length >0 ?'':'mb-5' }}">
 <div class="container">
 	<a class="navbar-brand" href="/">Training-1</a>
 	<button class="navbar-toggler"

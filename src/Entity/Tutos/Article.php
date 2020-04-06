@@ -31,10 +31,11 @@ class Article
      */
     private $content;
     
-//     /**
-//      * @ORM\Column(type="datetime", nullable=true)
-//      */
-//     private $publishedAt;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $publishedAt;
+    
     
     public function getId(): ?int
     {
@@ -78,5 +79,16 @@ class Article
         return $this;
     }
     
+    public function getPublishedAt(): ?string
+    {
+        return $this->$publishedAt;
+    }
+    
+    public function setPublishedAt(string $publishedAt): self
+    {
+        $this->$publishedAt = $publishedAt;
+        
+        return $this;
+    }
     
 }

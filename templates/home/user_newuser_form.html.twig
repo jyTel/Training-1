@@ -8,9 +8,14 @@
 	<h1>Create a new User</h1>
 
 	{{ form_start(userForm) }}
-	{{ form_widget(userForm) }}
+    	{{ form_widget(userForm) }}
+    	
+    	<button type="submit" class="btn btn-primary mt-3">Create</button>
+    	<button type="reset" class="btn btn-primary mt-3">Clear</button>
+    	<a class="nav-link" href="{{ path('user_showusers') }}">Back</a>
+    	
 	{{ form_end(userForm) }}
 
-	<a class="nav-link" href="{{ path('user_showusers') }}">Back</a>
+
 	
 {% endblock %}

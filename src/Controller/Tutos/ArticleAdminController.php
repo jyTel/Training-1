@@ -36,17 +36,23 @@ class ArticleAdminController extends AbstractController
     
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            /** @var Article $article */
             //dd($form->getData());
-            $data = $form->getData();
-            $article = new Article();
-            $article->setTitle($data['title']);
-            $article->setContent($data['content']);
-            $article->setSlug('SLUG');
+            //$data = $form->getData();
+            //dd($data);
+            $article = $form->getData();            
+            
+//             $article = new Article();
+//             $article->setTitle($data['title']);
+//             $article->setContent($data['content']);
+             $article->setSlug('SLUG');
             
             $em->persist($article);
             $em->flush();
             
-            return $this->redirectToRoute('home');
+            $this->addFlash('success', 'Article Created! Knowledge is power!');
+            
+            return $this->redirectToRoute('admin_article_list');
         }
         
         
@@ -73,7 +79,7 @@ class ArticleAdminController extends AbstractController
     }
    
     /**
-     * @Route("/admin/article")
+     * @Route("/admin/article", name="admin_article_list")
      */
     public function list(ArticleRepository $articleRepo) {
         

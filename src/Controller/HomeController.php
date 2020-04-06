@@ -128,6 +128,8 @@ class HomeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             //dd($form->getData()); //dump data
             $data = $form->getData();
+            dd($data);
+            
             $user = new User();
             $user->setName($data['Name']);
             $user->setLastname($data['Lastname']);
