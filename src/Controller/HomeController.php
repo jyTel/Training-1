@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,10 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 //------------------------------------------------------------------//
+
+use Doctrine\ORM\EntityManagerInterface;
+
+use App\Form\UserFormType;
 
 
 class HomeController extends AbstractController
@@ -107,5 +112,41 @@ class HomeController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
+    /** AUTRE VERSION : UTILISATION D'UNE CLASSE UserFormType 
+     * 
+     * @Route("/users/new/user_form", name="user_newuser_form");
+     * 
+     */
+    public function user_newuser_form(EntityManagerInterface $em, Request $request) {
+        
+        //die('Todo!'); //Display Todo!
+        
+        $form = $this->createForm(UserFormType::class);
+        
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            //dd($form->getData()); //dump data
+            $data = $form->getData();
+            $user = new User();
+            $user->setName($data['Name']);
+            $user->setLastname($data['Lastname']);
+            $user->setUsername($data['Username']);
+            $user->setMail($data['Mail']);
+            $user->setPassword($data['Password']);
+            $user->setRole($data['Role']);
+            
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirectToRoute('user_showusers'); 
+        }
+        
+        return $this->render('home/user_newuser_form.html.twig', [
+            'controller_name' => 'HomeController',
+            'userForm' => $form->createView(),
+        ]);
+    }
+    
     
 }

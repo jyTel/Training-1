@@ -1,0 +1,16 @@
+{# /templates/home/user_newuser_form.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+	<h1>Create a new User</h1>
+
+	{{ form_start(userForm) }}
+	{{ form_widget(userForm) }}
+	{{ form_end(userForm) }}
+
+	<a class="nav-link" href="{{ path('user_showusers') }}">Back</a>
+	
+{% endblock %}
